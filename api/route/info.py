@@ -8,6 +8,7 @@ router = APIRouter()
 @router.get('/info',
     dependencies=[Depends(get_db)],
     tags=['utils'],
+    response_model=cowSchemas.UserInfoDocument,
     summary="Get current user info")
 async def get_info(cow: CowTransfer = Depends(get_cow),) -> cowSchemas.UserInfoDocument:
     return cow.user_info()

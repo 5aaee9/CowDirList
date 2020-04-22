@@ -25,7 +25,7 @@ class CowTransfer(object):
 
     def login(self):
         res = requests.post(EMAIL_LOGIN_API, files={
-            "email": (None, config.COWCOW_USERNAME),
+            "email": (None, config.COW_USERNAME),
             "password": (None, config.COW_PASSWORD)
         }, headers={
             "referer": "https://cowtransfer.com/login"
