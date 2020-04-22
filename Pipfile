@@ -1,0 +1,15 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+
+[packages]
+fastapi = "==0.52.0"
+uvicorn = "==0.11.3"
+peewee = "==3.13.1"
+pydantic = {extras = ["email"],version = "==1.4"}
+
+[requires]
+python_version = "3.8"

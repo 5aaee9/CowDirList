@@ -1,5 +1,6 @@
 {
     "workbench.iconTheme": "material-icon-theme",
     "editor.renderIndentGuides": false,
-    "workbench.colorTheme": "Dracula"
+    "workbench.colorTheme": "Dracula",
+    "python.pythonPath": ".venv/bin/python3.8"
 }

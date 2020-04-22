@@ -1,5 +1,13 @@
+tasks:
+  - init: pipenv install
+  - command: pipenv shell uvicorn api.main:app --reload
+
+ports:
+  - port: 8080
+    onOpen: ignore
+
 vscode:
-  extensions: 
+  extensions:
     - mkaufman.HTMLHint@0.6.0:TdNYbCmjW8N3yiaPW4/adg==
     - mathiasfrohlich.Kotlin@1.7.1:2Uw0hH38NcpgInldjuwF3g==
     - ronnidc.nunjucks@0.2.3:WQVPscP5AsQ+pBtpJtRDWQ==
