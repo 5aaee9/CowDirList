@@ -2,5 +2,7 @@
     "workbench.iconTheme": "material-icon-theme",
     "editor.renderIndentGuides": false,
     "workbench.colorTheme": "Dracula",
-    "python.pythonPath": ".venv/bin/python3.8"
+    "python.pythonPath": ".venv/bin/python3.8",
+    "editor.fontFamily": "Cascadia Code, CamingoCode, Iosevka, Menlo, Monaco, 'Courier New', monospace",
+    "editor.fontSize": 14
 }
