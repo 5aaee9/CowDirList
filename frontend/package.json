@@ -18,6 +18,7 @@
         "eslint": "^6.8.0",
         "eslint-plugin-react": "^7.19.0",
         "rollup": "^2.7.2",
+        "rollup-plugin-copy": "^3.3.0",
         "rollup-plugin-livereload": "^1.2.0",
         "rollup-plugin-scss": "^2.4.0",
         "rollup-plugin-serve": "^1.0.1",

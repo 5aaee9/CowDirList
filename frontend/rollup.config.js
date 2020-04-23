@@ -6,6 +6,7 @@ import json from '@rollup/plugin-json'
 import livereload from 'rollup-plugin-livereload'
 import { uglify } from 'rollup-plugin-uglify'
 import serve from 'rollup-plugin-serve'
+import copy from 'rollup-plugin-copy'
 import scss from 'rollup-plugin-scss'
 
 import * as react from 'react'
@@ -65,8 +66,13 @@ if (!isProd) {
     config.plugins = [
         ...config.plugins,
         uglify({
-            sourcfemap: false,
+            sourcemap: false,
         }),
+        copy({
+            targets: [
+                { src: 'static/**/*', dest: 'dist' }
+            ]
+        })
     ]
 }
 
