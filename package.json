@@ -1,0 +1,5 @@
+{
+  "devDependencies": {
+    "rollup-plugin-copy": "^3.3.0"
+  }
+}

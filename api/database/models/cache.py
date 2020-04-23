@@ -2,9 +2,10 @@ from api.database.connection import db
 import peewee
 
 class CacheModel(peewee.Model):
-    dirName = peewee.CharField(unique=True, index=True)
+    path = peewee.CharField(unique=True, index=True)
     fileTree = peewee.TextField()
-    size = peewee.IntegerField(default=0)
+    page = peewee.IntegerField(default=0)
+    expire_time = peewee.DateField()
 
     class Meta:
         database = db
