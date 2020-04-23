@@ -1,6 +1,9 @@
 {
     "scripts": {
-        "watch": "rollup -cw"
+        "watch": "rollup -cw",
+        "build": "cross-env NODE_ENV=production rollup -c",
+        "fix": "eslint --fix --ext .js,.ts,.tsx src",
+        "lint": "eslint --ext .js,.ts,.tsx src"
     },
     "devDependencies": {
         "@rollup/plugin-commonjs": "^11.1.0",
@@ -9,6 +12,11 @@
         "@rollup/plugin-typescript": "^4.1.1",
         "@types/react": "^16.9.34",
         "@types/react-dom": "^16.9.6",
+        "@typescript-eslint/eslint-plugin": "^2.29.0",
+        "@typescript-eslint/parser": "^2.29.0",
+        "cross-env": "^7.0.2",
+        "eslint": "^6.8.0",
+        "eslint-plugin-react": "^7.19.0",
         "rollup": "^2.7.2",
         "rollup-plugin-livereload": "^1.2.0",
         "rollup-plugin-scss": "^2.4.0",
