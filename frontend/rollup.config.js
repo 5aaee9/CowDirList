@@ -9,10 +9,17 @@ import serve from 'rollup-plugin-serve'
 import copy from 'rollup-plugin-copy'
 import scss from 'rollup-plugin-scss'
 
-import * as react from 'react'
-import * as reactDom from 'react-dom'
-import * as reactIs from 'react-is'
-import * as propTypes from 'prop-types'
+const namedExports = {}
+function addReplace(packName) {
+    const pack = require(packName)
+
+    namedExports[packName] = Object.keys(pack)
+}
+
+addReplace('react')
+addReplace('react-dom')
+addReplace('react-is')
+addReplace('prop-types')
 
 const isProd = process.env.NODE_ENV === 'production'
 
@@ -36,12 +43,7 @@ const config = {
         }),
         commonjs({
             include: /node_modules/,
-            namedExports: {
-                'react': Object.keys(react),
-                'react-dom': Object.keys(reactDom),
-                'react-is': Object.keys(reactIs),
-                'prop-types': Object.keys(propTypes),
-            },
+            namedExports,
         }),
         typescript({
             tsconfig: './tsconfig.json',
