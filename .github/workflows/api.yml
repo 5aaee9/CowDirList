@@ -25,6 +25,9 @@ jobs:
     - name: NPM install
       run: npm install
 
+    - name: Lock python requirements
+      run: pipenv lock --requirements > requirements.txt
+
     - name: Serverless Deploy
       uses: serverless/github-action@master
       with:
