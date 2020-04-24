@@ -22,16 +22,14 @@ jobs:
     - name: Install pipenv
       run: sudo python -m pip install pipenv
 
+    - name: Install serverless
+      run: npm i -g serverless
+
     - name: NPM install
       run: npm install
 
-    - name: Lock python requirements
-      run: pipenv lock --requirements > requirements.txt
-
     - name: Serverless Deploy
-      uses: serverless/github-action@master
-      with:
-        args: deploy
+      run: serverless deploy
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}

@@ -14,7 +14,7 @@ provider:
 custom:
   pythonRequirements:
     pythonBin: python
-    usePipenv: false
+    usePipenv: true
     dockerizePip: non-linux
 
 package:
