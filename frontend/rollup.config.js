@@ -10,7 +10,10 @@ import copy from 'rollup-plugin-copy'
 import scss from 'rollup-plugin-scss'
 
 const namedExports = {}
+
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 function addReplace(packName) {
+    // eslint-disable-next-line
     const pack = require(packName)
 
     namedExports[packName] = Object.keys(pack)
@@ -30,8 +33,8 @@ const config = {
     },
     watch: {
         include: [
-            'static',
-            'src',
+            'static/**/*',
+            'src/**/*',
         ],
     },
     plugins: [
@@ -61,6 +64,7 @@ if (!isProd) {
         serve({
             open: false,
             contentBase: ['dist', 'static'],
+            historyApiFallback: '/index.html',
         }),
         livereload(),
     ]
@@ -72,9 +76,9 @@ if (!isProd) {
         }),
         copy({
             targets: [
-                { src: 'static/**/*', dest: 'dist' }
-            ]
-        })
+                { src: 'static/**/*', dest: 'dist' },
+            ],
+        }),
     ]
 }
 

@@ -1,7 +1,6 @@
 from contextvars import ContextVar
+from api import config
 import peewee
-
-DATABASE_NAME = "cow.db"
 
 db_state_default = {"closed": None, "conn": None, "ctx": None, "transactions": None}
 db_state = ContextVar("db_state", default=db_state_default.copy())
@@ -18,6 +17,6 @@ class PeeweeConnectionState(peewee._ConnectionState):
         return self._state.get()[name]
 
 
-db = peewee.SqliteDatabase(DATABASE_NAME, check_same_thread=False)
+db = peewee.SqliteDatabase(config.SQLITE_NAME, check_same_thread=False)
 
 db._state = PeeweeConnectionState()

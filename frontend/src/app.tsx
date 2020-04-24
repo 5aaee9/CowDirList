@@ -1,13 +1,21 @@
 import React from 'react'
-import { Button } from '@material-ui/core'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import DirListComponent from './list'
+import { Container } from '@material-ui/core'
 
 export default class AppComponent extends React.Component<{}, object> {
     render(): React.ReactNode {
         return (
-            <>
-                <h1>Hello, World</h1>
-                <Button color="primary">Hello World</Button>
-            </>
+            <Container fixed>
+                <br />
+                <BrowserRouter>
+                    <Switch>
+                        <Route path="/">
+                            <DirListComponent />
+                        </Route>
+                    </Switch>
+                </BrowserRouter>
+            </Container>
         )
     }
 }

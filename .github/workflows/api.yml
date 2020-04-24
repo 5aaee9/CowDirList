@@ -1,0 +1,36 @@
+on:
+  push:
+    branches:
+      - master
+
+name: Deploy master api
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '12.x'
+    - uses: actions/setup-python@v1
+      with:
+        python-version: '3.x'
+        architecture: 'x64'
+
+    - name: Install pipenv
+      run: sudo python -m pip install pipenv
+
+    - name: NPM install
+      run: npm install
+
+    - name: Serverless Deploy
+      uses: serverless/github-action@master
+      with:
+        args: deploy
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        COW_USERNAME: ${{ secrets.COW_USERNAME }}
+        COW_PASSWORD: ${{ secrets.COW_PASSWORD }}

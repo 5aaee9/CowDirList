@@ -1,0 +1,36 @@
+service: cow-dir-list-api
+
+provider:
+  name: aws
+  runtime: python3.8
+  region: ${opt:region, 'us-east-1'}
+  stage: ${opt:stage, 'production'}
+  environment:
+    REGION: ${self:provider.region}
+    LOG_LEVEL: ${opt:loglevel, 'INFO'}
+    COW_USERNAME: ${env:COW_USERNAME}
+    COW_PASSWORD: ${env:COW_PASSWORD}
+
+custom:
+  pythonRequirements:
+    pythonBin: python
+    usePipenv: true
+    dockerizePip: non-linux
+
+package:
+  exclude:
+    - frontend/**
+    - .venv/**
+
+functions:
+  app:
+    handler: api.main.handler
+    events:
+      - http: ANY /
+      - http:
+          path: /{proxy+}
+          method: ANY
+
+plugins:
+  - serverless-python-requirements
+  - serverless-offline
