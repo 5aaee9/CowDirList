@@ -3,12 +3,14 @@ from fastapi import APIRouter, Depends
 from fastapi.responses import RedirectResponse
 from api.database.services import cache as cacheService
 from api.schemas.cow import CowListDirDocument
+from api.database.depends import get_db
 from typing import Optional
 
 router = APIRouter()
 
 @router.get(
     '/files/list/{path:path}',
+    dependencies=[Depends(get_db)],
     tags=['files'],
     response_model=CowListDirDocument,
     summary="Get path file list")
@@ -28,6 +30,7 @@ async def get_file_list(path: Optional[str], page: int = 0, cow: CowTransfer = D
 
 @router.get(
     '/files/download/{guid}',
+    dependencies=[Depends(get_db)],
     tags=['files'],
     summary="Redirect to file download link"
 )
