@@ -35,3 +35,9 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         COW_USERNAME: ${{ secrets.COW_USERNAME }}
         COW_PASSWORD: ${{ secrets.COW_PASSWORD }}
+        DATABASE_TYPE: ${{ secrets.DATABASE_TYPE }}
+        MYSQL_DB: ${{ secrets.MYSQL_DB }}
+        MYSQL_HOST: ${{ secrets.MYSQL_HOST }}
+        MYSQL_PORT: ${{ secrets.MYSQL_PORT }}
+        MYSQL_USER: ${{ secrets.MYSQL_USER }}
+        MYSQL_PASS: ${{ secrets.MYSQL_PASS }}

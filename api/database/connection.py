@@ -16,7 +16,12 @@ class PeeweeConnectionState(peewee._ConnectionState):
     def __getattr__(self, name):
         return self._state.get()[name]
 
+db = None
 
-db = peewee.SqliteDatabase(config.SQLITE_NAME, check_same_thread=False)
+if config.DATABASE_TYPE == "mysql":
+    db = peewee.MySQLDatabase(config.MYSQL_DB, host=config.MYSQL_HOST,
+        port=config.MYSQL_PORT, user=config.MYSQL_USER, password=config.MYSQL_PASS)
+else:
+    db = peewee.SqliteDatabase(config.SQLITE_NAME, check_same_thread=False)
 
 db._state = PeeweeConnectionState()

@@ -10,6 +10,12 @@ provider:
     LOG_LEVEL: ${opt:loglevel, 'INFO'}
     COW_USERNAME: ${env:COW_USERNAME}
     COW_PASSWORD: ${env:COW_PASSWORD}
+    DATABASE_TYPE: ${env:DATABASE_TYPE}
+    MYSQL_DB: ${env:MYSQL_DB}
+    MYSQL_HOST: ${env:MYSQL_HOST}
+    MYSQL_PORT: ${env:MYSQL_PORT}
+    MYSQL_USER: ${env:MYSQL_USER}
+    MYSQL_PASS: ${env:MYSQL_PASS}
 
 custom:
   pythonRequirements:
