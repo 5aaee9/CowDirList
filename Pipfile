@@ -12,6 +12,7 @@ peewee = "==3.13.1"
 pydantic = {extras = ["email"],version = "==1.4"}
 requests = "==2.23.0"
 mangum = "==0.8.0"
+pymysql = "==0.9.3"
 
 [requires]
 python_version = "3.8"
