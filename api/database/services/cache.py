@@ -13,7 +13,7 @@ def get_cache(path: str, page: int) -> Optional[CowListDirDocument]:
         data = CacheModel.get(CacheModel.path == path and CacheModel.page == page)
 
         # Cache expired
-        if data.expire_time < datetime.datetime.now():
+        if data.expire_time < datetime.datetime.now().time():
             return None
 
         return CowListDirDocument(**json.loads(data.fileTree))
