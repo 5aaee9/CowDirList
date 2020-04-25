@@ -1,19 +1,13 @@
 import React from 'react'
 import {
     Card, CardContent, Typography,
-    Breadcrumbs, ListItem,
-    ListItemAvatar, Avatar, ListItemText,
-    ListItemSecondaryAction, IconButton, List, ListSubheader,
+    Breadcrumbs
 } from '@material-ui/core'
-
-import {
-    OpenInBrowser, InsertDriveFile,
-} from '@material-ui/icons'
 
 import { createBreadcrumbs } from './breadcrumbs'
 
 import { listDir } from './api'
-import { GetFolders } from './info'
+import { FilesList, FoldersList } from './info'
 
 const CardHeader: React.FC = props => (
     <div className="list-card-header">
@@ -34,12 +28,8 @@ export default class ListComponent extends React.Component<{}, {
             folders: [],
             loading: true,
         }
-    }
 
-    render(): React.ReactNode {
         const path = location.pathname
-        const breadcrumbs = createBreadcrumbs(path)
-
         listDir(path)
             .then((data: CowListDirDocument) => {
                 this.setState({
@@ -48,6 +38,11 @@ export default class ListComponent extends React.Component<{}, {
                     loading: false,
                 })
             })
+    }
+
+    render(): React.ReactNode {
+        const path = location.pathname
+        const breadcrumbs = createBreadcrumbs(path)
 
         return (
             <Card className="list-card">
@@ -62,28 +57,8 @@ export default class ListComponent extends React.Component<{}, {
                         </Breadcrumbs>
                     </CardHeader>
 
-                    { GetFolders(this.state.folders) }
-
-                    <List aria-labelledby="nested-file-subheader"
-                        subheader={
-                            <ListSubheader component="div" id="nested-file-subheader">
-                                文件
-                            </ListSubheader>
-                        }>
-                        <ListItem>
-                            <ListItemAvatar>
-                                <Avatar>
-                                    <InsertDriveFile />
-                                </Avatar>
-                            </ListItemAvatar>
-                            <ListItemText primary="Vacation" secondary="July 20, 2014" />
-                            <ListItemSecondaryAction>
-                                <IconButton edge="end" aria-label="delete">
-                                    <OpenInBrowser />
-                                </IconButton>
-                            </ListItemSecondaryAction>
-                        </ListItem>
-                    </List>
+                    <FoldersList folders={this.state.folders} />
+                    <FilesList files={this.state.files} />
                 </CardContent>
             </Card>
         )
