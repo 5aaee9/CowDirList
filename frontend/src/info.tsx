@@ -13,7 +13,8 @@ import { getDownloadLink } from './api'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
 
 class FoldersListImpl extends React.Component<{
-    folders: CowFolderDocument[]
+    folders: CowFolderDocument[],
+    onRouteUpdate: () => any,
 } & RouteComponentProps, object> {
     render(): React.ReactNode {
         const items = this.props.folders.map(it => <ListItem key={it.guid}>
@@ -27,6 +28,7 @@ class FoldersListImpl extends React.Component<{
                 <IconButton edge="end" aria-label="open" onClick={
                     () => {
                         this.props.history.push(it.path)
+                        this.props.onRouteUpdate()
                     }
                 }>
                     <OpenInBrowser />

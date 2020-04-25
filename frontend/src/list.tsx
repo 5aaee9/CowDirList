@@ -29,7 +29,16 @@ export default class ListComponent extends React.Component<{}, {
             loading: true,
         }
 
+        this.refreshDir()
+    }
+
+    refreshDir() {
         const path = location.pathname
+        this.setState({
+            ...this.state,
+            loading: true,
+        })
+
         listDir(path)
             .then((data: CowListDirDocument) => {
                 this.setState({
@@ -57,7 +66,9 @@ export default class ListComponent extends React.Component<{}, {
                         </Breadcrumbs>
                     </CardHeader>
 
-                    <FoldersList folders={this.state.folders} />
+                    <FoldersList
+                        folders={this.state.folders}
+                        onRouteUpdate={() => this.refreshDir()} />
                     <FilesList files={this.state.files} />
                 </CardContent>
             </Card>
