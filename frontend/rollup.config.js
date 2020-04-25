@@ -43,6 +43,8 @@ const config = {
         }),
         resolve({
             extensions: ['.js', '.ts', '.tsx'],
+            preferBuiltins: true,
+            browser: true,
         }),
         commonjs({
             include: /node_modules/,
