@@ -10,7 +10,10 @@ CACHE_TIME =  60 * 10
 
 def get_cache(path: str, page: int) -> Optional[CowListDirDocument]:
     try:
-        data = CacheModel.get(CacheModel.path == path and CacheModel.page == page)
+        data = CacheModel.select()  \
+            .where(CacheModel.path == path) \
+            .where(CacheModel.page == page) \
+            .get()
 
         # Cache expired
         if data.expire_time < datetime.datetime.now().time():
