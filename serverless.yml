@@ -36,6 +36,16 @@ functions:
       - http:
           path: /{proxy+}
           method: ANY
+          cors:
+            origin: '*'
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+              - X-Amz-User-Agent
+            allowCredentials: false
 
 plugins:
   - serverless-python-requirements

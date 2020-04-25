@@ -1,7 +1,7 @@
 import React from 'react'
 import {
-    Button, Card, CardContent, Typography,
-    Breadcrumbs, Link, Divider, ListItem,
+    Card, CardContent, Typography,
+    Breadcrumbs, ListItem,
     ListItemAvatar, Avatar, ListItemText,
     ListItemSecondaryAction, IconButton, List, ListSubheader,
 } from '@material-ui/core'
@@ -9,6 +9,8 @@ import {
 import {
     Folder, Delete, OpenInBrowser, InsertDriveFile,
 } from '@material-ui/icons'
+
+import { createBreadcrumbs } from './breadcrumbs'
 
 const CardHeader: React.FC = props => (
     <div className="list-card-header">
@@ -19,22 +21,7 @@ const CardHeader: React.FC = props => (
 export default class ListComponent extends React.Component<{}, object> {
     render(): React.ReactNode {
         const path = location.pathname
-
-        const breadcrumbs = [
-            <Link color="inherit" key="/" href="/">根目录</Link>,
-        ]
-
-        const pathFolders = path.split('/').filter(it => it.trim().length > 0)
-        let fullPath = ''
-
-        for (const pathFolder of pathFolders) {
-            fullPath += `/${pathFolder}`
-            breadcrumbs.push(
-                <Link color="inherit" key={fullPath} href={fullPath}>
-                    { pathFolder }
-                </Link>,
-            )
-        }
+        const breadcrumbs = createBreadcrumbs(path)
 
         return (
             <Card className="list-card">
