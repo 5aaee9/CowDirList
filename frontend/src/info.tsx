@@ -5,12 +5,13 @@ import {
 } from '@material-ui/core'
 
 import {
-    Folder, OpenInBrowser, InsertDriveFile
+    Folder, OpenInBrowser, InsertDriveFile, Link
 } from '@material-ui/icons'
 
 import { getDisplayBytes } from './utils/func'
 import { getDownloadLink } from './api'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
+import * as clipboard from "clipboard-polyfill"
 
 class FoldersListImpl extends React.Component<{
     folders: CowFolderDocument[],
@@ -60,6 +61,10 @@ export class FilesList extends React.Component<{
             window.open(getDownloadLink(guid), '_black')
         }
 
+        function copyDownload(guid: string) {
+            clipboard.writeText(getDownloadLink(guid))
+        }
+
         const items = this.props.files.map(it => <ListItem key={it.guid}>
                 <ListItemAvatar>
                     <Avatar>
@@ -68,7 +73,16 @@ export class FilesList extends React.Component<{
                 </ListItemAvatar>
                 <ListItemText primary={it.fileName} secondary={`${it.createdAt} - ${getDisplayBytes(it.sizeInByte)}`} />
                 <ListItemSecondaryAction>
-                    <IconButton edge="end" aria-label="delete" onClick={() => openDownload(it.guid)}>
+                    <IconButton
+                        edge="end"
+                        aria-label="open"
+                        onClick={() => copyDownload(it.guid)}>
+                        <Link />
+                    </IconButton>
+                    <IconButton
+                        edge="end"
+                        aria-label="copy"
+                        onClick={() => openDownload(it.guid)}>
                         <OpenInBrowser />
                     </IconButton>
                 </ListItemSecondaryAction>
