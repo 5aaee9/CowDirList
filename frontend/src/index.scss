@@ -10,3 +10,18 @@
         padding-right: 0px !important;
     }
 }
+
+
+.list-loading {
+    display: grid;
+    text-align: center;
+
+    > .MuiCircularProgress-root {
+        margin: 80px auto;
+        margin-bottom: 10px;
+    }
+
+    > .MuiTypography-root {
+        margin-bottom: 80px;
+    }
+}

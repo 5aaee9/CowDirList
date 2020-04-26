@@ -8,6 +8,7 @@ import { createBreadcrumbs } from './breadcrumbs'
 
 import { listDir } from './api'
 import { FilesList, FoldersList } from './info'
+import Loading from './loading'
 
 const CardHeader: React.FC = props => (
     <div className="list-card-header">
@@ -49,6 +50,21 @@ export default class ListComponent extends React.Component<{}, {
             })
     }
 
+    getDirStatus() {
+        if (!this.state.loading) {
+            return <>
+                <FoldersList
+                    folders={this.state.folders}
+                    onRouteUpdate={() => this.refreshDir()} />
+                <FilesList files={this.state.files} />
+            </>
+        }
+
+        return (
+            <Loading />
+        )
+    }
+
     render(): React.ReactNode {
         const path = location.pathname
         const breadcrumbs = createBreadcrumbs(path)
@@ -66,10 +82,8 @@ export default class ListComponent extends React.Component<{}, {
                         </Breadcrumbs>
                     </CardHeader>
 
-                    <FoldersList
-                        folders={this.state.folders}
-                        onRouteUpdate={() => this.refreshDir()} />
-                    <FilesList files={this.state.files} />
+                    { this.getDirStatus() }
+
                 </CardContent>
             </Card>
         )
