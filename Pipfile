@@ -9,7 +9,7 @@ verify_ssl = true
 fastapi = "==0.52.0"
 uvicorn = "==0.11.7"
 peewee = "==3.13.1"
-pydantic = {extras = ["email"],version = "==1.4"}
+pydantic = {extras = ["email"],version = "==1.6.2"}
 requests = "==2.23.0"
 mangum = "==0.8.0"
 pymysql = "==0.9.3"
